@@ -1,10 +1,8 @@
 #include <stdio.h>
-<<<<<<< HEAD
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
     
-=======
 
 bool contains(char array[78][20], char string[])
 {
@@ -53,14 +51,14 @@ int main()
     fclose(Fptr);
     for(int i = 0; i < n; i++) {
         printf("%-20s", spells[i]);
-        // to print in a table
+        // to print in a table-like format
         if ((i + 1) % 5 == 0 || i == n - 1) {
             printf("\n");
         }
     }
  
 
-    char usedSpells[n][20] = {"x"}; // initializes an array of strings.
+    char usedSpells[78][20] = {"x"}; // initializes an array of strings.
 
     char p1input[20], p2input[20];
     int i = 1;
@@ -111,7 +109,6 @@ int main()
         }
         strcpy(usedSpells[i], p2input);
         i++;
->>>>>>> cc9da1fdefc2decb4721194cf5ca01f2c76d2b81
     }
 
     return 0;
