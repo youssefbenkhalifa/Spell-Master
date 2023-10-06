@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
     
 
 bool contains(char array[78][20], char string[])
@@ -25,6 +26,14 @@ bool sameLetter(char str1[], char str2[])
 }
 int main()
 {
+    
+    char name1[20];
+    char name2[20];
+    printf("Player one, please enter name: ");
+    scanf("%s",name1);
+    printf("Player two, please enter name: ");
+    scanf("%s",name2);
+    // reading file and displaying spells
     FILE * Fptr;
     Fptr = fopen("spells.txt","r");
     char line[20];    
@@ -62,54 +71,104 @@ int main()
 
     char p1input[20], p2input[20];
     int i = 1;
-
+    srand(time(0));
+    int random = rand() % 2  + 1;
     while (true)
     {
-        printf("Player 1, go!:");
+        if(random==1){
+        printf("%s, go!:",name1);
         scanf("%s", &p1input);
 
         if (contains(spells, p1input) == 0)
         {
-            printf("The spell is not in the provided list! \nPlayer 2 wins!");
+            printf("The spell is not in the provided list! \n%s wins!",name2);
             break;
         }
         if (i != 1)
         {
             if (sameLetter(p2input, p1input) == 0)
             {
-                printf("The spell\'s first character must match the last character of the previously chosen spell.\n Player 2 wins!");
+                printf("The spell\'s first character must match the last character of the previously chosen spell.\n %s wins!",name2);
                 break;
             }
         }
         if (contains(usedSpells, p1input) == 1)
         {
-            printf("The spell has already been used!\nPlayer 2 wins!");
+            printf("The spell has already been used!\n%s wins!",name2);
             break;
         }
         strcpy(usedSpells[i], p1input);
         i++;
 
-        printf("Player 2, go!:");
+        printf("%s, go!:",name2);
         scanf("%s", &p2input);
 
         if (contains(spells, p2input) == 0)
         {
-            printf("The spell is not in the provided list! \nPlayer 1 wins!");
+            printf("The spell is not in the provided list! \n%s wins!",name1);
             break;
         }
         if (sameLetter(p1input, p2input) == 0)
         {
-            printf("The spell\'s first character must match the last character of the previously chosen spell.\n Player 1 wins!");
+            printf("The spell\'s first character must match the last character of the previously chosen spell.\n %s wins!",name1);
             break;
         }
         if (contains(usedSpells, p2input) == 1)
         {
-            printf("The spell has already been used! \nPlayer 1 wins!");
+            printf("The spell has already been used! \n%s wins!",name1);
             break;
         }
         strcpy(usedSpells[i], p2input);
         i++;
-    }
+        }else{
+        
+        printf("%s, go!:",name2);
+        scanf("%s", &p2input);
+
+        if (contains(spells, p2input) == 0)
+        {
+            printf("The spell is not in the provided list! \n%s wins!",name1);
+            break;
+        }
+        if (i != 1)
+        {
+            if (sameLetter(p2input, p1input) == 0)
+            {
+                printf("The spell\'s first character must match the last character of the previously chosen spell.\n Player 1 wins!");
+                break;
+            }
+        }
+        if (contains(usedSpells, p1input) == 1)
+        {
+            printf("The spell has already been used!\n%s wins!",name1);
+            break;
+        }
+        strcpy(usedSpells[i], p1input);
+        i++;
+
+        printf("%s, go!:",name1);
+        scanf("%s", &p1input);
+
+        if (contains(spells, p2input) == 0)
+        {
+            printf("The spell is not in the provided list! \n%s wins!",name2);
+            break;
+        }
+        if (sameLetter(p1input, p2input) == 0)
+        {
+            printf("The spell\'s first character must match the last character of the previously chosen spell.\n %s wins!",name2);
+            break;
+        }
+        if (contains(usedSpells, p2input) == 1)
+        {
+            printf("The spell has already been used! \n%s wins!",name2);
+            break;
+        }
+        strcpy(usedSpells[i], p2input);
+        i++;
+        }
+        }
+    
 
     return 0;
 }
