@@ -16,6 +16,17 @@ bool contains(char array[78][20], char string[])
     }
     return false;
 }
+bool outofwords(char array[78][20], char c,char usedarray[78][20])
+{
+    for (int i = 0; i < 78; i++)
+    {
+        if (c == array[i][0] && contains(usedarray,array[i])==false)
+        { 
+            return false;
+        }
+    }
+    return true;
+}
 bool sameLetter(char str1[], char str2[])
 {
     if (str1[strlen(str1) - 1] == str2[0])
@@ -99,6 +110,11 @@ int main()
         if (contains(usedSpells, p1input) == 1)
         {
             printf("The spell has already been used!\n%s wins!",name2);
+            break;
+        }
+        char l = p1input[strlen(p1input)-1];
+        if(outofwords(spells,l,usedSpells)){
+            printf("no more spells in the list that satisfy the character matching condition, %s wins!\n",name1);
             break;
         }
         strcpy(usedSpells[i], p1input);
