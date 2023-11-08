@@ -4,10 +4,11 @@
 #include <string.h>
 #include <time.h>
     
-
-bool contains(char array[78][20], char string[])
+int n=0;
+// using n as a global variable has be evaluated. can we do it in another way?
+bool contains(char array[n][20], char string[])
 {
-    for (int i = 0; i < 78; i++)
+    for (int i = 0; i < n; i++)
     {
         if (strcmp(array[i], string) == 0)
         { // strcmp compares two strings, returns 0 if they're equal, 1/-1 otherwise.
@@ -16,9 +17,9 @@ bool contains(char array[78][20], char string[])
     }
     return false;
 }
-bool outofwords(char array[78][20], char c,char usedarray[78][20])
+bool outofwords(char array[n][20], char c,char usedarray[n][20])
 {
-    for (int i = 0; i < 78; i++)
+    for (int i = 0; i < n; i++)
     {
         if (c == array[i][0] && contains(usedarray,array[i])==false)
         { 
@@ -49,10 +50,11 @@ int main()
     Fptr = fopen("spells.txt","r");
     char line[20];    
     fgets(line,20,Fptr);
-    int n = atoi(line);
+    n = atoi(line);
     printf("We have %d spells \n",n);
     int count = -1;
     char spells[n][20];
+    char usedSpells[n][20] ;
     // putting all spells in an array for easier access
     if(Fptr!=NULL){
         while(fgets(line,20,Fptr)){
@@ -78,7 +80,6 @@ int main()
     }
  
 
-    char usedSpells[78][20] = {"x"}; // initializes an array of strings.
 
     char p1input[20], p2input[20];
     int i = 1;
