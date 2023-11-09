@@ -4,8 +4,8 @@
 #include <string.h>
 #include <time.h>
     
-int n=0;
-// using n as a global variable has be evaluated. can we do it in another way?
+int n;
+// using n as a global variable has to be evaluated. can we do it in another way?
 bool contains(char array[n][20], char string[])
 {
     for (int i = 0; i < n; i++)
@@ -28,14 +28,7 @@ bool outofwords(char array[n][20], char c,char usedarray[n][20])
     }
     return true;
 }
-bool sameLetter(char str1[], char str2[])
-{
-    if (str1[strlen(str1) - 1] == str2[0])
-    {
-        return true;
-    }
-    return false;
-}
+
 int main()
 {
     
@@ -102,7 +95,7 @@ int main()
         }
         if (i != 1)
         {
-            if (sameLetter(p2input, p1input) == 0)
+            if (p1input[strlen(p1input) - 1] == p2input[0])
             {
                 printf("The spell\'s first character must match the last character of the previously chosen spell.\n %s wins!",name2);
                 break;
