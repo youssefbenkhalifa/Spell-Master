@@ -3,8 +3,11 @@
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
-    
+#include "Easy.c"    
+
 int n;
+
+
 // using n as a global variable has to be evaluated. can we do it in another way?
 bool contains(char array[n][20], char string[])
 {
@@ -17,11 +20,11 @@ bool contains(char array[n][20], char string[])
     }
     return false;
 }
-bool outofwords(char array[n][20], char c,char usedarray[n][20])
+bool outofwords(char array[n][20], char c,char usedSoFar[n][20])
 {
     for (int i = 0; i < n; i++)
     {
-        if (c == array[i][0] && contains(usedarray,array[i])==false)
+        if (c == array[i][0] && contains(usedSoFar,array[i])==false)
         { 
             return false;
         }
@@ -31,13 +34,21 @@ bool outofwords(char array[n][20], char c,char usedarray[n][20])
 
 int main()
 {
-    
+
+    printf("Press B to play against a bot, press enter to play against an other player: ");
+    char b;
+    scanf("%s",b);
     char name1[20];
     char name2[20];
     printf("Player one, please enter name: ");
     scanf("%s",name1);
-    printf("Player two, please enter name: ");
-    scanf("%s",name2);
+    if(b=='b'){
+        char *name2 = "bot";
+    }else{
+        printf("Player two, please enter name: ");
+        scanf("%s",name2);
+    }
+    
     // reading file and displaying spells
     FILE * Fptr;
     Fptr = fopen("spells.txt","r");
@@ -45,9 +56,9 @@ int main()
     fgets(line,20,Fptr);
     n = atoi(line);
     printf("We have %d spells \n",n);
-    int count = -1;
+    int count = 0;
     char spells[n][20];
-    char usedSpells[n][20] ;
+    char usedSoFar[n][20] ;
     // putting all spells in an array for easier access
     if(Fptr!=NULL){
         while(fgets(line,20,Fptr)){
@@ -74,7 +85,7 @@ int main()
  
 
 
-    char p1input[20], p2input[20];
+    char p1input[20], p2input[20]=" ";
     int i = 1;
     srand(time(0));
     int random = rand() % 2  + 1;
@@ -87,6 +98,9 @@ int main()
     while (true){
 
         printf("%s, go!:",name1);
+        if(strcmp(name1,"bot")==0){
+            char* p1input = easyMode(p2input[0],spells,usedSoFar,n,i);
+        }
         scanf("%s", &p1input);
         if (contains(spells, p1input) == 0)
         {
@@ -101,17 +115,17 @@ int main()
                 break;
             }
         }
-        if (contains(usedSpells, p1input) == 1)
+        if (contains(usedSoFar, p1input) == 1)
         {
             printf("The spell has already been used!\n%s wins!",name2);
             break;
         }
         char l = p1input[strlen(p1input)-1];
-        if(outofwords(spells,l,usedSpells)){
+        if(outofwords(spells,l,usedSoFar)){
             printf("no more spells in the list that satisfy the character matching condition, %s wins!\n",name1);
             break;
         }
-        strcpy(usedSpells[i], p1input);
+        strcpy(usedSoFar[i], p1input);
         i++;
         strcpy(temp,name1);
         strcpy(name1,name2);
