@@ -43,7 +43,7 @@ int main()
     printf("Player one, please enter name: ");
     scanf("%s",name1);
     if(b=='b'){
-        char *name2 = "bot";
+        char []name2 = "bot";
     }else{
         printf("Player two, please enter name: ");
         scanf("%s",name2);
