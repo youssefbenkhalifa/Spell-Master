@@ -13,12 +13,11 @@ bool contains(char array[10][20], char string[])
     return false;
 }
  
-void OccursFirstEasy(char letter, char spells[78][20], char usedSpells[78][20]){
+void OccursFirstEasy(char letter, char spells[78][20], char usedSpells[78][20], int storeUsed) {
     for( int i = 0 ; i < 78 ; i++){
        if ( spells[i][0]==letter && contains(usedSpells,spells[i])==0 ){
            printf("%s!", spells[i]);
-         //need to add the spell to the usedSpells array
-         //strcopy(usedSpell[],spells[i]);
+           strcpy(usedSpells[storeUsed],spells[i]);
            return;
        }
     }
@@ -31,8 +30,8 @@ int main() {
         "accio", "obliviate", "liberacorpus", "scourgify", "protego"};
 
     char usedSpells[78][20] = {"accio"};
-    
-    OccursFirstEasy('s', spells, usedSpells);
+    int i=1;
+    OccursFirstEasy('s', spells, usedSpells, i);
    
     return 0;
 }
