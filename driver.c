@@ -6,9 +6,6 @@
 #include "Easy.c"    
 
 int n;
-
-
-// using n as a global variable has to be evaluated. can we do it in another way?
 bool contains(char array[n][20], char string[])
 {
     for (int i = 0; i < n; i++)
@@ -32,23 +29,9 @@ bool outofwords(char array[n][20], char c,char usedSoFar[n][20])
     return true;
 }
 
+
 int main()
 {
-
-    printf("Press B to play against a bot, press enter to play against an other player: ");
-    char b;
-    scanf("%s",b);
-    char name1[20];
-    char name2[20];
-    printf("Player one, please enter name: ");
-    scanf("%s",name1);
-    if(b=='b'){
-        char []name2 = "bot";
-    }else{
-        printf("Player two, please enter name: ");
-        scanf("%s",name2);
-    }
-    
     // reading file and displaying spells
     FILE * Fptr;
     Fptr = fopen("spells.txt","r");
@@ -70,11 +53,30 @@ int main()
                     j++;
                 }
             }
+            
             line[j] = '\0';
-            strcpy(spells[count],line);
+                strcpy(spells[count],line);
+
         }
     }
     fclose(Fptr);
+    // end of file reading
+    printf("Press B to play against a bot, press enter to play against an other player: ");
+    char b;
+    scanf("%c",&b);
+    char name1[20];
+    char name2[20];
+    printf("Player one, please enter name: ");
+    scanf("%s",name1);
+    if(b=='b'){
+        strcpy(name2,"bot");
+    }else{
+        printf("Player two, please enter name: ");
+        scanf("%s",name2);
+    }
+    
+    // Printing the words
+    printf("%s \n",spells[0]);
     for(int i = 0; i < n; i++) {
         printf("%-20s", spells[i]);
         // to print in a table-like format
@@ -83,8 +85,6 @@ int main()
         }
     }
  
-
-
     char p1input[20], p2input[20]=" ";
     int i = 1;
     srand(time(0));
@@ -97,11 +97,14 @@ int main()
     }    
     while (true){
 
-        printf("%s, go!:",name1);
+        
         if(strcmp(name1,"bot")==0){
-            char* p1input = easyMode(p2input[0],spells,usedSoFar,n,i);
+            strcpy(p1input,easy(p2input[strlen(p2input)-1],spells,usedSoFar));
+            printf("Bot chose : %s \n ",p1input);
+        }else{
+            printf("%s, go!:",name1);
+            scanf("%s", &p1input);
         }
-        scanf("%s", &p1input);
         if (contains(spells, p1input) == 0)
         {
             printf("The spell is not in the provided list! \n%s wins!",name2);
