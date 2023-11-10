@@ -45,15 +45,15 @@ int main()
     printf("Press B to play against a bot, press enter to play against an other player: ");
     char b;
     scanf("%c",&b);
-    char name1[20];
-    char name2[20];
+    char currentPlayer[20];
+    char otherPlayer[20];
     printf("Player one, please enter name: ");
-    scanf("%s",name1);
+    scanf("%s",currentPlayer);
     if(b=='b'){
-        strcpy(name2,"bot");
+        strcpy(otherPlayer,"bot");
     }else{
         printf("Player two, please enter name: ");
-        scanf("%s",name2);
+        scanf("%s",otherPlayer);
     }
     
     // Printing the words
@@ -66,55 +66,56 @@ int main()
         }
     }
  
-    char p1input[20], p2input[20]=" ";
-    int i = 1;
+    char current[20]="$", previous[20]="!";
+    int i = 0;
     srand(time(0));
     int random = rand() % 2  + 1;
     char temp[20];
     if(random==2){
-        strcpy(temp,name1);
-        strcpy(name1,name2);
-        strcpy(name2,temp);
+        strcpy(temp,currentPlayer);
+        strcpy(currentPlayer,otherPlayer);
+        strcpy(otherPlayer,temp);
     }    
     while (true){
 
         
-        if(strcmp(name1,"bot")==0){
-            strcpy(p1input,easy(p2input[strlen(p2input)-1],spells,usedSoFar));
-            printf("Bot chose : %s \n ",p1input);
+        if(strcmp(currentPlayer,"bot")==0){
+            strcpy(current,easy(previous[strlen(previous)-1],spells,usedSoFar));
+            printf("Bot chose : %s \n ",current);
         }else{
-            printf("%s, go!:",name1);
-            scanf("%s", &p1input);
+            printf("%s, go!:",currentPlayer);
+            scanf("%s", &current);
         }
-        if (contains(spells, p1input) == 0)
+        if (contains(spells, current) == 0)
         {
-            printf("The spell is not in the provided list! \n%s wins!",name2);
+            printf("The spell is not in the provided list! \n%s wins!",otherPlayer);
             break;
         }
-        if (i != 1)
-        {
-            if (p1input[strlen(p1input) - 1] == p2input[0])
+        if (i != 0)
+       {
+            if (previous[strlen(previous) - 1] != current[0] )
             {
-                printf("The spell\'s first character must match the last character of the previously chosen spell.\n %s wins!",name2);
+                printf("The spell\'s first character must match the last character of the previously chosen spell.\n %s wins!",otherPlayer);
                 break;
             }
         }
-        if (contains(usedSoFar, p1input) == 1)
+        if (contains(usedSoFar, current) == 1)
         {
-            printf("The spell has already been used!\n%s wins!",name2);
+            printf("The spell has already been used!\n%s wins!",otherPlayer);
             break;
         }
-        char l = p1input[strlen(p1input)-1];
+        char l = current[strlen(current)-1];
         if(outofwords(spells,l,usedSoFar)){
-            printf("no more spells in the list that satisfy the character matching condition, %s wins!\n",name1);
+            printf("no more spells in the list that satisfy the character matching condition, %s wins!\n",currentPlayer);
             break;
         }
-        strcpy(usedSoFar[i], p1input);
+        strcpy(usedSoFar[i], current);
         i++;
-        strcpy(temp,name1);
-        strcpy(name1,name2);
-        strcpy(name2,temp);
-        strcpy(p2input,p1input);
+        strcpy(temp,currentPlayer);
+        strcpy(currentPlayer,otherPlayer);
+        strcpy(otherPlayer,temp);
+        strcpy(previous,current);
+
 
 
     }
