@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
-#include "easy.c"    
+#include "easyMode.c"    
 #include "functions.h"
 #include "functions.c"
 
@@ -80,7 +80,7 @@ int main()
 
         
         if(strcmp(currentPlayer,"bot")==0){
-            strcpy(current,easy(previous[strlen(previous)-1],spells,usedSoFar));
+            strcpy(current,easyMode(previous[strlen(previous)-1],spells,usedSoFar));
             printf("Bot chose : %s \n ",current);
         }else{
             printf("%s, go!:",currentPlayer);
