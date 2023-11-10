@@ -15,7 +15,9 @@ char* easyMode(char letter, char spells[n][20], char usedSpells[n][20]) {
        }
     }
      //printf("i lost!");
-     return spells[1];
+    srand(time(NULL)); // Seed the random number generator with the current time
+    int randomIndex = rand() % (n - 1) ; 
+    return spells[randomIndex];
 }
 
 
