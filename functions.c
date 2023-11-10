@@ -25,12 +25,25 @@ bool outofwords(char array[n][20], char c,char usedSoFar[n][20])
     }
     return true;
 }
-int Occurrences(char letter, char spells[n][20], char usedSpells[n][20]){
+int occurrencesFirst(char letter, char spells[n][20], char usedSpells[n][20]){
     int count=0;
      for (int i = 0; i < n; i++) {
         if( !contains(usedSpells,spells[i])){
         size_t length = strlen(spells[i]);
-        char lastChar = spells[i][length - 1];
+        char firstChar = spells[i][0];
+          if(firstChar==letter){
+            count++;
+          }
+        }
+    }
+    return count;
+}
+int occurrencesLast(char letter, char spells[n][20], char usedSpells[n][20]){
+    int count=0;
+     for (int i = 0; i < n; i++) {
+        if( !contains(usedSpells,spells[i])){
+        size_t length = strlen(spells[i]);
+        char lastChar = spells[length-1][0];
           if(lastChar==letter){
             count++;
           }
