@@ -3,31 +3,12 @@
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
-#include "Easy.c"    
+#include "easy.c"    
+#include "functions.h"
+#include "functions.c"
 
 int n;
-bool contains(char array[n][20], char string[])
-{
-    for (int i = 0; i < n; i++)
-    {
-        if (strcmp(array[i], string) == 0)
-        { // strcmp compares two strings, returns 0 if they're equal, 1/-1 otherwise.
-            return true;
-        }
-    }
-    return false;
-}
-bool outofwords(char array[n][20], char c,char usedSoFar[n][20])
-{
-    for (int i = 0; i < n; i++)
-    {
-        if (c == array[i][0] && contains(usedSoFar,array[i])==false)
-        { 
-            return false;
-        }
-    }
-    return true;
-}
+
 
 
 int main()
