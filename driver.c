@@ -44,15 +44,19 @@ int main()
     }
     fclose(Fptr);
     // end of file reading
-    printf("Press B to play against a bot, press enter to play against an other player: ");
+    printf("Press b the enter to play against a bot \npress any button then enter to play against an other player: \n");
     char b;
     scanf("%c",&b);
     char currentPlayer[20];
     char otherPlayer[20];
     printf("Player one, please enter name: ");
     scanf("%s",currentPlayer);
+    int mode ;
     if(b=='b'){
         strcpy(otherPlayer,"bot");
+        printf("Press 1 for Easy Mode \nPress 2 for Medium Mode \nPress 3 for Hard Mode:\n");
+        scanf("%d",&mode);
+        
     }else{
         printf("Player two, please enter name: ");
         scanf("%s",otherPlayer);
@@ -62,7 +66,7 @@ int main()
     for(int i = 1; i <= n; i++) {
         printf("%-20s", spells[i]);
         // to print in a table-like format
-        if ((i + 1) % 5 == 0 || i == n - 1) {
+        if ((i ) % 5 == 0 || i == n ) {
             printf("\n");
         }
     }
@@ -76,13 +80,28 @@ int main()
         strcpy(temp,currentPlayer);
         strcpy(currentPlayer,otherPlayer);
         strcpy(otherPlayer,temp);
-    }    
-    while (true){
-
-        
+    }
+    if(mode==1){
+        printf("--------------------- EASY MODE ---------------------\n");
+    }else if(mode==2){
+        printf("--------------------- MEDIUM MODE ---------------------\n");
+    }else{
+        printf("--------------------- HARD MODE ---------------------\n");
+    }
+    while (true){        
         if(strcmp(currentPlayer,"bot")==0){
+            if (mode==1){
+                easyMode(previous,spells,usedSoFar,current);
+            } else if (mode==2){
+                mediumMode(previous,spells,usedSoFar,current);
+            }else if (mode==3){
+                hardMode(previous,spells,usedSoFar,current);
+            }else{
+                printf("Invalid Mode Input please try again..");
+                return 1;
+            }
             hardMode(previous,spells,usedSoFar,current);
-            printf("Bot chose : %s \n ",current);
+            printf("Bot chose : %s \n",current);
         }else{
             printf("%s, go!:",currentPlayer);
             scanf("%s", &current);
