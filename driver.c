@@ -4,6 +4,8 @@
 #include <string.h>
 #include <time.h>
 #include "easyMode.c"    
+#include "hardMode.c"    
+#include "mediumMode.c"    
 #include "functions.h"
 #include "functions.c"
 
@@ -36,7 +38,7 @@ int main()
             }
             
             line[j] = '\0';
-                strcpy(spells[count],line);
+            strcpy(spells[count],line);
 
         }
     }
@@ -57,16 +59,15 @@ int main()
     }
     
     // Printing the words
-    printf("%s \n",spells[0]);
-    for(int i = 0; i < n; i++) {
+    for(int i = 1; i <= n; i++) {
         printf("%-20s", spells[i]);
         // to print in a table-like format
         if ((i + 1) % 5 == 0 || i == n - 1) {
             printf("\n");
         }
     }
- 
-    char current[20]="$", previous[20]="!";
+    printf("\n");
+    char current[20], previous[20]="";
     int i = 0;
     srand(time(0));
     int random = rand() % 2  + 1;
@@ -80,7 +81,7 @@ int main()
 
         
         if(strcmp(currentPlayer,"bot")==0){
-            strcpy(current,easyMode(previous[strlen(previous)-1],spells,usedSoFar));
+            hardMode(previous,spells,usedSoFar,current);
             printf("Bot chose : %s \n ",current);
         }else{
             printf("%s, go!:",currentPlayer);

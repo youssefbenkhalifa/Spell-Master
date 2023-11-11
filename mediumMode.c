@@ -4,7 +4,7 @@
 #include "functions.h"
 extern int n;
 
-void hardMode(char previous[] , char spells[n][20], char usedSpells[n][20],char next[20]) {
+void mediumMode(char previous[] , char spells[n][20], char usedSpells[n][20],char next[20]) {
     int k = 0;
     for (int i=1;i<=n;i++){
         if(usedSpells[i]!=NULL){
@@ -23,17 +23,10 @@ void hardMode(char previous[] , char spells[n][20], char usedSpells[n][20],char 
         }
     }
     if(strcmp(previous,"")==0 || j==0){
-        for(int i=1;i<n;i++){
-                occ[i] = occu(spells[i][strlen(spells[i])-1],spells);
-            }
-            int min = 1;
-            for(int i=2;i<=n;i++){
-                if(occ[i]<occ[min]){
-                    min = i;
-                }
-            }
-            strcpy(next,spells[min]);
-            return;
+        srand(time(NULL)); // Seed the random number generator with the current time
+        int randomIndex = rand() % (n - 1) ; 
+        strcpy(next,spells[randomIndex]);
+        return;
     }
        
         for(int i=1;i<j;i++){
