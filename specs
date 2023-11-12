@@ -14,7 +14,6 @@ signature: int occurrencesNotUsed(char letter, char spells[n][20], char usedSpel
 requires: a specific letter which we're going to check around and 2 arrays or strings that are max length 20
 effects: returns the count/number of unused spells that begin with the specific letter 
 
-
 signature: int occu(char letter, char spells[n][20])
 requires: a specific letter which we're going to compare with and an array of strings that ar max length 20
 effects: return the number of spells that begin with this specific letter
