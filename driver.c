@@ -12,7 +12,6 @@
 int n;
 
 
-
 int main()
 {
     // reading file and displaying spells
