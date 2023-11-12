@@ -1,0 +1,28 @@
+SPECS FOR functions.c:
+
+signature: bool contains(char array[n][20], char string[])
+requires: an array of strings (represented by char[][]) and a string (represented by char[])
+effects: returns whether the array of strings contains the string
+
+
+signature: bool outofwords(char array[n][20], char c,char usedSoFar[n][20])
+requires: an array of strings considering the max length to be 20, a char c to check if any words begin with this char, and an array that contains all the words that have been used so far
+effects: return wether or not there is still a word in the array that suits the requirements that hasn't been used yet
+
+
+signature: int occurrencesNotUsed(char letter, char spells[n][20], char usedSpells[n][20])
+requires: a specific letter which we're going to check around and 2 arrays or strings that are max length 20
+effects: returns the count/number of unused spells that begin with the specific letter 
+
+
+signature: int occu(char letter, char spells[n][20])
+requires: a specific letter which we're going to compare with and an array of strings that ar max length 20
+effects: return the number of spells that begin with this specific letter
+
+
+
+SPECS FOR EASY MODE: 
+
+signature: void easyMode(char previous[], char spells[n][20], char usedSpells[n][20],char next[])
+requires: a spell which is in the spells list and which has not been used before that has the same first letter as the last letter of the previous spell.
+effects: it keeps on iterating for all the spells until a suitable one is found which will be assigned to the value of next, else if no spell in the list suits these requirements a random spell in the list will be the next spell.
