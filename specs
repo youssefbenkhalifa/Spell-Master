@@ -23,3 +23,12 @@ SPECS FOR EASY MODE:
 signature: void easyMode(char previous[], char spells[n][20], char usedSpells[n][20],char next[])
 requires: a spell which is in the spells list and which has not been used before that has the same first letter as the last letter of the previous spell.
 effects: it keeps on iterating for all the spells until a suitable one is found which will be assigned to the value of next, else if no spell in the list suits these requirements a random spell in the list will be the next spell.
+
+
+
+SPECS FOR MEDIUM MODE:
+
+signature: void mediumMode(char previous[] , char spells[n][20], char usedSpells[n][20],char next[20])
+requires: a spell "previous" and 2 arrays of spells that are of max size 20 and "next" which will store the next spell 
+effects: chooses the next spell based on the difficulty if possible or a player wins the game. It assigns the spell that has the letter with the last letter with the smallest occurence if previous is not empty else it returns a random elements from the spells and stores it in "next"
+	 
