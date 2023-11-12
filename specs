@@ -8,7 +8,6 @@ signature: bool outofwords(char array[n][20], char c,char usedSoFar[n][20])
 requires: an array of strings considering the max length to be 20, a char c to check if any words begin with this char, and an array that contains all the words that have been used so far
 effects: return wether or not there is still a word in the array that suits the requirements that hasn't been used yet
 
-
 signature: int occurrencesNotUsed(char letter, char spells[n][20], char usedSpells[n][20])
 requires: a specific letter which we're going to check around and 2 arrays or strings that are max length 20
 effects: returns the count/number of unused spells that begin with the specific letter 
