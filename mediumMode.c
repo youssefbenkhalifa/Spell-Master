@@ -4,7 +4,7 @@
 #include "functions.h"
 extern int n;
 
-void mediumMode(char previous[] , char spells[n][20], char usedSpells[n][20],char next[20]) {
+void mediumMode(char previous[] , char spells[n][50], char usedSpells[n][50],char next[50]) {
     int k = 0;
     for (int i=1;i<=n;i++){
         if(usedSpells[i]!=NULL){
@@ -12,7 +12,7 @@ void mediumMode(char previous[] , char spells[n][20], char usedSpells[n][20],cha
         }
     }
     char letter = previous[strlen(previous)-1];       
-    char notUsed[n][20];
+    char notUsed[n][50];
     int occ[n];
     int j=0;
 
@@ -23,6 +23,8 @@ void mediumMode(char previous[] , char spells[n][20], char usedSpells[n][20],cha
         }
     }
     if(strcmp(previous,"")==0 || j==0){
+        // j==0 is when no words will have the same letter as a first letter
+        
         srand(time(NULL)); // Seed the random number generator with the current time
         int randomIndex = rand() % (n - 1) ; 
         strcpy(next,spells[randomIndex]);

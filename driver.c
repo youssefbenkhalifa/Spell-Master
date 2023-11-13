@@ -8,7 +8,6 @@
 #include "mediumMode.c"    
 #include "functions.h"
 #include "functions.c"
-
 int n;
 
 
@@ -17,16 +16,16 @@ int main()
     // reading file and displaying spells
     FILE * Fptr;
     Fptr = fopen("spells.txt","r");
-    char line[20];    
-    fgets(line,20,Fptr);
+    char line[50];    
+    fgets(line,50,Fptr);
     n = atoi(line);
     printf("We have %d spells \n",n);
     int count = 0;
-    char spells[n][20];
-    char usedSoFar[n][20] ;
+    char spells[n][50];
+    char usedSoFar[n][50] ;
     // putting all spells in an array for easier access
     if(Fptr!=NULL){
-        while(fgets(line,20,Fptr)){
+        while(fgets(line,50,Fptr)){
             count++;
             int j=0;
             for(int i=0;i<strlen(line);i++){
@@ -43,22 +42,17 @@ int main()
     }
     fclose(Fptr);
     // end of file reading
-    printf("Press b the enter to play against a bot \npress any button then enter to play against an other player: \n");
-    char b;
-    scanf("%c",&b);
-    char currentPlayer[20];
-    char otherPlayer[20];
+
+    char currentPlayer[50];
+    char otherPlayer[50];
     printf("Player one, please enter name: ");
     scanf("%s",currentPlayer);
+    printf("Player two, please enter name \n (TO PLAY AGAINST A BOT TYPE bot: )\n");
+    scanf("%s",otherPlayer);
     int mode ;
-    if(b=='b'){
-        strcpy(otherPlayer,"bot");
+    if(strcmp(otherPlayer,"bot")==0){
         printf("Press 1 for Easy Mode \nPress 2 for Medium Mode \nPress 3 for Hard Mode:\n");
-        scanf("%d",&mode);
-        
-    }else{
-        printf("Player two, please enter name: ");
-        scanf("%s",otherPlayer);
+        scanf("%d",&mode);  
     }
     
     // Printing the words
@@ -70,11 +64,11 @@ int main()
         }
     }
     printf("\n");
-    char current[20], previous[20]="";
+    char current[50], previous[50]="";
     int i = 0;
     srand(time(0));
     int random = rand() % 2  + 1;
-    char temp[20];
+    char temp[50];
     if(random==2){
         strcpy(temp,currentPlayer);
         strcpy(currentPlayer,otherPlayer);
@@ -84,7 +78,7 @@ int main()
         printf("--------------------- EASY MODE ---------------------\n");
     }else if(mode==2){
         printf("--------------------- MEDIUM MODE ---------------------\n");
-    }else{
+    }else if(mode==3){
         printf("--------------------- HARD MODE ---------------------\n");
     }
     while (true){        
@@ -99,7 +93,6 @@ int main()
                 printf("Invalid Mode Input please try again..");
                 return 1;
             }
-            hardMode(previous,spells,usedSoFar,current);
             printf("Bot chose : %s \n",current);
         }else{
             printf("%s, go!:",currentPlayer);

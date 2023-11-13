@@ -1,0 +1,17 @@
+Strategy:
+Easy move:
+if the previous spell is an empty string the bot returns a random word from the spells array otherwise
+it returns the first spell from the array that hasn't been used before and that starts with the last letter from
+the previous string.
+
+Medium move:
+if the previous spell is an empty string the bot returns a random word from the spells array otherwise
+it returns a word that starts with the last letter from previous , that hasn't been used before and that has as
+a last letter, the letter that occurs the least as the first letter.
+
+Hard move:
+if the previous spell is an empty string the bot returns the word with in which the last letter is the least likely to be first letter 
+(the last is the one that has the least occurence as a first letter)
+otherwise it returns a word that starts with the last letter from previous , that hasn't been used before and that has as
+a last letter, the letter that occurs the least as the first letter.
+

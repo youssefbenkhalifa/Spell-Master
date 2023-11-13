@@ -1,0 +1,45 @@
+SPECS FOR functions.c:
+
+bool contains(char array[n][50], char string[])
+requires: an array of strings  and a string 
+effects: returns true of the array of strings contains the string otherwise return false
+
+bool outofwords(char array[n][50], char c,char usedSoFar[n][50])
+requires: an array of strings, a char c, and an array that contains all the words that have been used so far
+effects: return false if there is a word that's starts with the char c in the array that is not in the second array usedsofar
+and returns true otherwise
+
+int occurrencesNotUsed(char letter, char spells[n][50], char usedSpells[n][50])
+requires: a specific letter , an array of spells and an array with the spells used so far
+effects: returns the number of unused spells that begin with the given letter
+
+int occu(char letter, char spells[n][50])
+requires: a letter character and an array of strings
+effects: returns the number of spells that begin with the given letter character
+
+
+
+SPECS FOR EASY MODE: 
+
+void easyMode(char previous[], char spells[n][50], char usedSpells[n][50],char next[50])
+requires: the previous spell string , the array of spells , the array of used spells and a next string variable
+effects: if the previous spell is an empty string it assigns to next a random word from the spells array otherwise
+it assigns to next the first spell from the array that hasn't been used before and that starts with the last letter from
+the previous string.
+
+
+
+SPECS FOR MEDIUM MODE:
+
+void mediumMode(char previous[] , char spells[n][50], char usedSpells[n][50],char next[50])
+requires: the previous spell string , the array of spells , the array of used spells and a next string variable
+effects: if the previous spell is an empty string it assigns to next a random word from the spells array otherwise
+it assigns to next a word that starts with the last letter from previous , that hasn't been used before and that has as
+a last letter, the letter that occurs the least as the first letter
+
+void hardMode(char previous[] , char spells[n][50], char usedSpells[n][50],char next[50])
+requires: the previous spell string , the array of spells , the array of used spells and a next string variable
+effects: if the previous spell is an empty string it assigns to next the word with the last letter that has the least occurence as a first letter
+otherwise it assigns to next a word that starts with the last letter from previous , that hasn't been used before and that has as
+a last letter, the letter that occurs the least as the first letter
+ 	 

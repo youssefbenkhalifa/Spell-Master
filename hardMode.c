@@ -4,15 +4,10 @@
 #include "functions.h"
 extern int n;
 
-void hardMode(char previous[] , char spells[n][20], char usedSpells[n][20],char next[20]) {
-    int k = 0;
-    for (int i=1;i<=n;i++){
-        if(usedSpells[i]!=NULL){
-            k++;
-        }
-    }
+void hardMode(char previous[] , char spells[n][50], char usedSpells[n][50],char next[50]) {
+
     char letter = previous[strlen(previous)-1];       
-    char notUsed[n][20];
+    char notUsed[n][50];
     int occ[n];
     int j=0;
 

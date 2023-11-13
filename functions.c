@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-extern int n;
+int n;
 
-bool contains(char array[n][20], char string[])
+bool contains(char array[n][50], char string[])
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <=n; i++)
     {
         if (strcmp(array[i], string) == 0)
         { // strcmp compares two strings, returns 0 if they're equal, 1/-1 otherwise.
@@ -14,9 +14,9 @@ bool contains(char array[n][20], char string[])
     }
     return false;
 }
-bool outofwords(char array[n][20], char c,char usedSoFar[n][20])
+bool outofwords(char array[n][50], char c,char usedSoFar[n][50])
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         if (c == array[i][0] && contains(usedSoFar,array[i])==false)
         { 
@@ -25,7 +25,7 @@ bool outofwords(char array[n][20], char c,char usedSoFar[n][20])
     }
     return true;
 }
-int occurrencesNotUsed(char letter, char spells[n][20], char usedSpells[n][20]){
+int occurrencesNotUsed(char letter, char spells[n][50], char usedSpells[n][50]){
     int count=0;
      for (int i = 1; i <= n; i++) {
         if( !contains(usedSpells,spells[i])){
@@ -38,7 +38,7 @@ int occurrencesNotUsed(char letter, char spells[n][20], char usedSpells[n][20]){
     }
     return count;
 }
-int occu(char letter, char spells[n][20]){
+int occu(char letter, char spells[n][50]){
     int count=0;
      for (int i = 1; i <= n; i++) {
         size_t length = strlen(spells[i]);
